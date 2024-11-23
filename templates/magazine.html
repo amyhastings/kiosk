@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+    <h2>{{ magazine.title }}</h2>
+
+    <img src="/static/images/mag{{ magazine.mag_id}}.jpg" alt="Cover for " {{ magazine.title }} class="magazine-cover">
+    <div>
+        <h4>Key Details</h4>
+        <p>
+            Categories: 
+                {% if magazine.categories|length > 0 %}
+                    {% for category in magazine.categories %}
+                        {{ category.cat_name }}
+                    {% endfor %}
+                {% else %}
+                    No categories assigned.
+                {% endif %}
+        </p>
+        <p>
+            Frequency: {{ magazine.frequency }}
+        </p>
+        <p>
+            Cost per issue: €{{ "%.2f"|format(magazine.cost_per_issue / 100) }}
+        </p>
+        <p>
+            {{ magazine.description }}
+        </p>
+    </div>
+    <div>
+        Subscribe
+    </div>
+
+
+{% endblock %}
