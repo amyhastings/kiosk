@@ -153,6 +153,34 @@ def delete_user(user_id):
 
     return render_template('delete_user.html', user=user)
 
+@app.route('/list_subscriptions')
+def list_subscriptions():
+    subscriptions = Subscription.query.all()
+    users = User.query.all()
+    magazines = Magazine.query.all()
+    return render_template('list_subscriptions.html', subscriptions=subscriptions, users=users, magazines=magazines)
+
+@app.route('/edit_subscription/<int:sub_id>', methods=['GET', 'POST'])
+def edit_subscription(sub_id):
+    subscription = db.get_or_404(Subscription, sub_id) 
+    users = User.query.all()
+    magazines = Magazine.query.all()
+
+    if request.method == 'POST':
+        subscription.sub_length = int(request.form['sub_length'])
+        subscription.sub_start_date = datetime.strptime(request.form['sub_start_date'], '%Y-%m-%d')
+        subscription.active = 'active' in request.form
+        db.session.commit()
+        return redirect(url_for('sub_page', sub_id=sub_id))
+
+    return render_template('edit_subscription.html', subscription=subscription, users=users, magazines=magazines)
+
+@app.route('/subscription/<int:sub_id>')
+def sub_page(sub_id):
+    subscription = db.get_or_404(Subscription, sub_id) 
+    magazines = Magazine.query.all()
+    users = User.query.all()
+    return render_template('subscription.html', subscription=subscription, users=users, magazines=magazines)
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
