@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Kiosk</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Discover and subscribe to your favorite magazines, all in one place!">
+        <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="/static/css/style.css">
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <a href="/"><img src="/static/images/logo2.png" alt="Kiosk"></a>
+            </div>
+            <nav>
+                <div class="nav-small">
+                    <img src="/static/images/hamburger.png" alt="Hamburger menu" id="hamburger">
+                    <img src="/static/images/close.png" alt="X to close" class="inactive" id="close-menu">
+                    <div class="menu-content inactive">
+                        <p class="menu-label">Menu</p>
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/all_categories">Categories</a></li>
+                            <li><a href="/subscribe">Subscribe</a></li>
+                            <li><a href="/contact">Contact</a></li>
+                            <li><a href="/admin">Admin Console</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="nav-large">
+                    <a href="/">Home</a>
+                    <a href="/all_categories">Categories</a>
+                    <a href="/subscribe">Subscribe</a>
+                    <a href="/contact">Contact</a>
+                    <a href="/admin">Admin Console</a>
+                </div>
+            </nav>
+        </header>
+        <div class="container">
+            <main>
+            {% block main %}
+            {% endblock %}
+            </main>
+        </div>
+        <script src="/static/js/script.js"></script>
+        <footer>
+            <div class="foot-contact">
+                <p>E-mail: <a href="mailto:fake.email@kiosk.com">fake.email@kiosk.com</a></p>
+            </div>
+            <div class="copy">
+                <p>&copy; 2024 Kiosk. All rights reserved.</p>
+            </div>
+        </footer>
+    </body>
+</html>
