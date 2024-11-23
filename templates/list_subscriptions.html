@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block main %}
+  <h2>List of Subscriptions</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Subscription ID</th>
+        <th>Subscriber Name (User ID)</th>
+        <th>Magazine</th>
+        <th>Length of Subscription</th>
+        <th>Subscription Start Date</th>
+        <th>First Issue</th>
+        <th>Last Issue</th>
+        <th>Active</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if subscriptions|length > 0 %}
+            {% for subscription in subscriptions %}
+                <tr>
+                    <td>{{subscription.sub_id}}</td>
+                    <td>{{subscription.users.name}} ({{ subscription.user_id}})</td>
+                    <td>{{subscription.magazines.title}}</td>
+                    <td>{{subscription.sub_length}} Issues</td>
+                    <td>{{subscription.start_date}}</td>
+                    <td>{{subscription.first_issue}}</td>
+                    <td>{{subscription.last_issue}}</td>
+                    <td>
+                        {% if subscription.active %}
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}</td>
+                    <td>
+                        <p><a href="{{ url_for('edit_subscription', sub_id=subscription.sub_id) }}">Edit</a></p>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+               <td colspan="8">No subscriptions found</td>
+            </tr>
+        {% endif %}
+    </tbody>
+  </table>
+{% endblock %}
