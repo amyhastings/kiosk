@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block main %}
+    <h2>Edit Magazine</h2>
+    <form action="{{ url_for('edit_magazine', mag_id=magazine.mag_id) }}" method="POST">
+        <fieldset>
+            <p>Magazine ID: {{ magazine.mag_id }}</p>
+            <label>Title:</label>
+            <input type="text" name="title" value="{{ magazine.title }}" required>
+            <label>Frequency:</label>
+            <input type="text" name="frequency" value="{{ magazine.frequency }}" required>
+            <label>Description:</label>
+            <input type="text" name="description" value="{{ magazine.description }}">
+            <label>Cost per issue (in cents):</label>
+            <input type="number" name="cost_per_issue" value="{{ magazine.cost_per_issue }}">
+            <label>Cover image (url):</label>
+            <input type="text" name="cover_image" value="{{ magazine.cover_image }}">
+        </fieldset>
+        <fieldset>
+            <legend>
+                Categories:
+            </legend>
+                {% for category in categories %}
+                <label for="category-{{ category.cat_id }}">{{ category.cat_name }}</label>
+
+                    {% if category in magazine.categories %}
+                        <input type="checkbox" id="category-{{ category.cat_id }}" name="category-{{ category.cat_id }}" value="{{ category.cat_name }}" checked>
+                    {% else %}
+                        <input type="checkbox" id="category-{{ category.cat_id }}" name="category-{{ category.cat_id }}" value="{{ category.cat_name }}">
+                    {% endif %}               
+
+                {% endfor %}
+        </fieldset>
+        <button type="submit">Edit Magazine</button>
+    </form>
+{% endblock %}
