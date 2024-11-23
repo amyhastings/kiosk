@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block main %}
+  <h2>Add a new magazine</h2>
+  <form action="{{ url_for('add_magazine') }}" method="POST">
+    <fieldset>
+      <label>Title:</label>
+      <input type="text" name="title" size="30" required>
+      <label>Frequency:</label>
+      <input type="text" name="frequency" required>
+      <label>Description:</label>
+      <input type="text" name="description" required>
+      <label>Cost per Issue (in cents):</label>
+      <input type="number" name="cost_per_issue" required>
+      <label>Cover image url:</label>
+      <input type="text" name="cover_image">
+    </fieldset>
+    <fieldset>
+      <legend>
+        Categories
+      </legend>
+      <ul>
+        {% for category in categories %}
+        <li>
+          <label for="category-{{ category.cat_id }}">{{ category.cat_name }}</label>
+          <input type="checkbox" id="category-{{ category.cat_id }}" name="category-{{ category.cat_id }}" value="{{ category.cat_name }}">
+        </li>
+        {% endfor %}
+      </ul>
+    </fieldset>
+    <button type="submit">Add New Magazine</button>
+  </form>
+{% endblock %}
+
