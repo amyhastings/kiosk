@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block main %}
     <h2>Edit User</h2>
-    <form action="{{ url_for('edit_user', user_id=user.user_id) }}" method="POST">
+    <form action="{{ url_for('edit_user', id=user.id) }}" method="POST">
         <fieldset>
-            <p>User ID: {{ user.user_id }}</p>
+            <p>User ID: {{ user.id }}</p>
             <label>Username:</label>
             <input type="text" name="username" value="{{ user.username }}" required>
             <label>Name:</label>

@@ -3,7 +3,7 @@
 {% block main %}
 
     <h2>Employees and Subscribers cannot be deleted from the database</h2>
-    <h2>User ID {{ user.user_id }} has NOT been deleted from the database</h2>
+    <h2>User ID {{ user.id }} has NOT been deleted from the database</h2>
         <table>
             <thead>
                 <tr>
@@ -17,12 +17,12 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>{{user.user_id}}</td>
+                    <td>{{user.id}}</td>
                     <td>
                         {% if user.role_id == 1 %}
-                            Subscriber
-                        {% elif user.role_id == 2 %}
                             Employee
+                        {% elif user.role_id == 2 %}
+                            Subscriber
                         {% else %}
                             User
                         {% endif %}

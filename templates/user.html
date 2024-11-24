@@ -2,7 +2,7 @@
 
 {% block main %}
 
-    <h2>User ID {{ user.user_id }} has been successfully updated</h2>
+    <h2>User ID {{ user.id }} has been successfully updated</h2>
         <table>
             <thead>
                 <tr>
@@ -16,7 +16,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>{{user.user_id}}</td>
+                    <td>{{user.id}}</td>
                     <td>
                         {% if user.role_id == 1 %}
                             Subscriber

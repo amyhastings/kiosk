@@ -16,7 +16,7 @@
       {% if users|length > 0 %}
             {% for user in users %}
                 <tr>
-                    <td>{{user.user_id}}</td>
+                    <td>{{user.id}}</td>
                     <td>
                         {% if user.role_id == 1 %}
                             Subscriber
@@ -31,10 +31,10 @@
                     <td>{{user.email}}</td>
                     <td>{{user.address}}</td>
                     <td>
-                        <p><a href="{{ url_for('edit_user', user_id=user.user_id) }}">Edit</a></p>
+                        <p><a href="{{ url_for('edit_user', id=user.id) }}">Edit</a></p>
                     </td>
                     <td>
-                        <p><a href="{{ url_for('delete_user_filter', user_id=user.user_id) }}">Delete</a></p>
+                        <p><a href="{{ url_for('delete_user_filter', id=user.id) }}">Delete</a></p>
                     </td>
                 </tr>
             {% endfor %}

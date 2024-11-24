@@ -10,8 +10,8 @@ db = SQLAlchemy()
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
-    user_id = db.mapped_column(db.Integer, primary_key=True)
-    role_id = db.mapped_column(db.Integer, db.ForeignKey('roles.role_id'), nullable=False)
+    id = db.mapped_column(db.Integer, primary_key=True)
+    role_id = db.mapped_column(db.Integer, db.ForeignKey('roles.role_id'), default=3)
     username = db.mapped_column(db.String(50), unique=True)
     name = db.mapped_column(db.String(100))
     email = db.mapped_column(db.String(200), unique=True)
@@ -58,7 +58,7 @@ class Magazine(db.Model):
     description = db.mapped_column(db.String(1500))
     cost_per_issue = db.mapped_column(db.Integer, nullable=False) #this will need to be in cents
     cover_image = db.mapped_column(db.String(100))
-    employee_id = db.mapped_column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
+    employee_id = db.mapped_column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
     subscriptions = relationship('Subscription', back_populates='magazines', uselist=True) #this is one (mag) to many (subs)
     categories = relationship('Category', secondary=mag_to_categories, back_populates='magazines')
@@ -70,7 +70,7 @@ class Magazine(db.Model):
 class Subscription(db.Model):
     __tablename__ = 'subscriptions'
     sub_id = db.mapped_column(db.Integer, primary_key=True)
-    user_id = db.mapped_column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
+    user_id = db.mapped_column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     mag_id = db.mapped_column(db.Integer, db.ForeignKey('magazines.mag_id'), nullable=False)
     sub_length = db.mapped_column(db.Integer) #number of issues
     sub_start_date = db.mapped_column(db.Date)

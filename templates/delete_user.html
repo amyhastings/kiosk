@@ -2,7 +2,7 @@
 
 {% block main %}
 
-    <h2>Are you sure you want to delete User ID {{ user.user_id }} from the database?</h2>
+    <h2>Are you sure you want to delete User ID {{ user.id }} from the database?</h2>
     <h2>Deleting a user from the database is a permanent action that cannot be reversed.</h2>
         <table>
             <thead>
@@ -17,7 +17,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>{{user.user_id}}</td>
+                    <td>{{user.id}}</td>
                     <td>
                         {% if user.role_id == 1 %}
                             Subscriber
@@ -34,7 +34,7 @@
                 </tr>
             </tbody>
         </table>
-        <form action="{{ url_for('delete_user', user_id=user.user_id) }}" method="POST">
+        <form action="{{ url_for('delete_user', id=user.id) }}" method="POST">
             <button type="submit">DELETE USER PERMANENTLY</button>
         </form>
     </div>
