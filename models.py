@@ -74,8 +74,6 @@ class Subscription(db.Model):
     mag_id = db.mapped_column(db.Integer, db.ForeignKey('magazines.mag_id'), nullable=False)
     sub_length = db.mapped_column(db.Integer) #number of issues
     sub_start_date = db.mapped_column(db.Date)
-    first_issue = db.mapped_column(db.Date)
-    last_issue = db.mapped_column(db.Date)
     active = db.mapped_column(db.Boolean, nullable=False)
 
     users = db.relationship('User', back_populates='subscriptions') #this is one to one
