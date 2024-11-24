@@ -182,5 +182,43 @@ def sub_page(sub_id):
     users = User.query.all()
     return render_template('subscription.html', subscription=subscription, users=users, magazines=magazines)
 
+@app.route('/list_categories')
+def list_categories():
+    categories = Category.query.all()
+    return render_template('list_categories.html', categories=categories)
+
+@app.route('/edit_category/<int:cat_id>', methods=['GET', 'POST'])
+def edit_category(cat_id):
+    category = db.get_or_404(Category, cat_id) 
+    categories = Category.query.all()
+
+    if request.method == 'POST':
+        category.cat_name = request.form['cat_name']
+        db.session.commit()
+        return redirect(url_for('list_categories', categories=categories))
+
+    return render_template('edit_category.html', category=category)
+
+@app.route('/delete_category/<int:cat_id>', methods=['GET', 'POST'])
+def delete_category(cat_id):
+    category = db.get_or_404(Category, cat_id) 
+    categories = Category.query.all()
+    if request.method == 'POST':
+        db.session.delete(category)
+        db.session.commit()
+        return redirect(url_for('list_categories', categories=categories))
+
+    return render_template('delete_category.html', category=category)
+
+@app.route('/add_category', methods=['GET', 'POST'])
+def add_category():
+    categories = Category.query.all()
+    if request.method == 'POST':
+        db.session.add(Category(cat_name=request.form['cat_name']))
+        db.session.commit()
+        return redirect(url_for('list_categories', categories=categories))
+
+    return render_template('add_category.html')
+
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
