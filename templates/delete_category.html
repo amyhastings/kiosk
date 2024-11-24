@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+    <h2>Are you sure you want to delete Category ID {{ category.cat_id }} {{ category.cat_name }} from the database?</h2>
+    <h2>Deleting a category from the database is a permanent action that cannot be reversed.</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Category ID</th>
+            <th>Category Name</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{category.cat_id}}</td>
+                <td>{{category.cat_name}}</td>
+            </tr>
+        </tbody>
+    </table>
+        <form action="{{ url_for('delete_category', cat_id=category.cat_id) }}" method="POST">
+            <button type="submit">DELETE CATEGORY PERMANENTLY</button>
+        </form>
+    </div>
+{% endblock %}
