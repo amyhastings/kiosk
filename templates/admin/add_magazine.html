@@ -3,6 +3,9 @@
   <h2>Add a new magazine</h2>
   <form action="{{ url_for('add_magazine') }}" method="POST">
     <fieldset>
+      <legend>
+        Magazine Details:
+      </legend>
       <label>Title:</label>
       <input type="text" name="title" size="30" required>
       <label>Frequency:</label>
@@ -16,7 +19,7 @@
     </fieldset>
     <fieldset>
       <legend>
-        Categories
+        Categories:
       </legend>
       <ul>
         {% for category in categories %}
