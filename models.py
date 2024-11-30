@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date
 
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
@@ -6,12 +6,14 @@ from sqlalchemy import Column, Integer, String, ForeignKey, Table
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
+from config import USER_ROLE_ID
+
 db = SQLAlchemy()
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.mapped_column(db.Integer, primary_key=True)
-    role_id = db.mapped_column(db.Integer, db.ForeignKey('roles.role_id'), default=3)
+    role_id = db.mapped_column(db.Integer, db.ForeignKey('roles.role_id'), default=USER_ROLE_ID)
     username = db.mapped_column(db.String(50), unique=True)
     name = db.mapped_column(db.String(100))
     email = db.mapped_column(db.String(200), unique=True)
@@ -81,5 +83,31 @@ class Subscription(db.Model):
 
     def __repr__(self):
         return f'Subscription<sub_id={self.sub_id}, mag_id={self.mag_id}, active={self.active}>'
+    
+    def get_next_month(self, d):
+        if d.month == 12:
+            return date(d.year + 1, 1, 1)
+        else:
+            return date(d.year, d.month + 1, 1)
+        
+    def get_next_quarter(self, d):
+        if d.month == 1 or d.month == 2 or d.month == 3:
+            return date(d.year, 4, 1)
+        elif d.month == 4 or d.month == 5 or d.month == 6:
+            return date(d.year, 7, 1)
+        elif d.month == 7 or d.month == 8 or d.month == 9:
+            return date(d.year, 10, 1)
+        elif d.month == 10 or d.month == 11 or d.month == 12:
+            return date(d.year + 1, 1, 1)
+        else:
+            raise Exception('Invalid date exception.')
 
+    def get_first_issue_date(self):
+        start_dt = self.sub_start_date
+        if self.magazines.frequency == 'Monthly':
+            return (self.get_next_month(self.sub_start_date))
+        elif self.magazines.frequency == 'Quarterly':
+            return (self.get_next_quarter(self.sub_start_date))
+        else:
+            raise Exception('Magazine has invalid frequency.')
 
