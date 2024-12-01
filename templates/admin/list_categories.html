@@ -4,8 +4,9 @@
   <table>
     <thead>
       <tr>
-        <th>Category ID</th>
-        <th>Category Name</th>
+        <th scope="col">Category ID</th>
+        <th scope="col">Category Name</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -15,19 +16,17 @@
                     <td>{{category.cat_id}}</td>
                     <td>{{category.cat_name}}</td>
                     <td>
-                        <p><a href="{{ url_for('edit_category', cat_id=category.cat_id) }}">Edit</a></p>
-                    </td>
-                    <td>
-                        <p><a href="{{ url_for('delete_category', cat_id=category.cat_id) }}">Delete</a></p>
+                        <p class="action-button"><a href="{{ url_for('edit_category', cat_id=category.cat_id) }}">Edit</a></p>
+                        <p class="action-button"><a href="{{ url_for('delete_category', cat_id=category.cat_id) }}">Delete</a></p>
                     </td>
                 </tr>
             {% endfor %}
         {% else %}
             <tr>
-               <td colspan="2">No categories found</td>
+               <td colspan="3">No categories found</td>
             </tr>
         {% endif %}
     </tbody>
   </table>
-  <p><a href="{{ url_for('add_category') }}">Add a New Category</a></p>
+  <p class="action-button"><a href="{{ url_for('add_category') }}">Add a New Category</a></p>
 {% endblock %}
