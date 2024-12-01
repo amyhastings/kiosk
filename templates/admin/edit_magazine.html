@@ -3,6 +3,9 @@
     <h2>Edit Magazine</h2>
     <form action="{{ url_for('edit_magazine', mag_id=magazine.mag_id) }}" method="POST">
         <fieldset>
+            <legend>
+                Magazine Details:
+            </legend>
             <p>Magazine ID: {{ magazine.mag_id }}</p>
             <label>Title:</label>
             <input type="text" name="title" value="{{ magazine.title }}" required>
@@ -26,7 +29,7 @@
                         <input type="checkbox" id="category-{{ category.cat_id }}" name="category-{{ category.cat_id }}" value="{{ category.cat_name }}" checked>
                     {% else %}
                         <input type="checkbox" id="category-{{ category.cat_id }}" name="category-{{ category.cat_id }}" value="{{ category.cat_name }}">
-                    {% endif %}               
+                    {% endif %}
 
                 {% endfor %}
         </fieldset>
