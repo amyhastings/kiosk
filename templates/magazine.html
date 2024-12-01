@@ -8,7 +8,7 @@
     <div>
         <h4>Key Details</h4>
         <p>
-            Categories: 
+            Categories:
                 {% if magazine.categories|length > 0 %}
                     {% for category in magazine.categories %}
                         {{ category.cat_name }}
@@ -28,8 +28,7 @@
         </p>
     </div>
     <div>
-        Subscribe
+        <p class="action-button"><a href="{{ url_for('add_subscription') }}">Subscribe</a></p>
     </div>
-
 
 {% endblock %}
