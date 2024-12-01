@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block main %}
+    <h2>Edit Subscription</h2>
+    <form action="{{ url_for('edit_subscription', sub_id=subscription.sub_id) }}" method="POST">
+        <p>Subscription ID: {{ subscription.sub_id }}</p>
+        <p>Subscriber Name (User ID): {{subscription.users.name}} ({{ subscription.user_id}})</p>
+        <p>Magazine: {{subscription.magazines.title}}</p>
+        <label>Length of Subscription:</label>
+        <input type="number" name="sub_length" value="{{ subscription.sub_length }}" required>
+        <label>Start Date:</label>
+        <input type="date" name="sub_start_date" value="{{ subscription.sub_start_date }}" required>
+        <p>First Issue: {{subscription.first_issue}}</p>
+        <label>The subscription is active</label>
+            {% if subscription.active %}
+                <input type="checkbox" name="active" value="{{ subscription.active }}" checked>
+            {% else %}
+                <input type="checkbox" name="active" value="{{ subscription.active }}">
+            {% endif %}
+        <button type="submit">Edit Subscription</button>
+    </form>
+{% endblock %}
