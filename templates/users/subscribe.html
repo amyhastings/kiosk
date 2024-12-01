@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block main %}
+{% if current_user.is_authenticated %}
+    <form action="{{ url_for('add_subscription') }}" method="POST">
+        <label for="magazine">Choose a Magazine:</label>
+        <select id="magazines" name="mag_id">
+        {% for magazine in magazines %}
+            <option value="{{ magazine.mag_id }}">{{ magazine.title }}</option>
+        {% endfor %}
+        </select>
+        <label>Choose how many issues you would like to receive:</label>
+        <select  id="sub_length" name="sub_length">
+            <option value="1">1</option>
+            <option value="3">3</option>
+            <option value="6">6</option>
+            <option value="9">9</option>
+            <option value="12">12</option>
+            <option value="18">18</option>
+        </select>
+        <button type="submit">Subscribe</button>
+    </form>
+{% else %}
+    <p>Please <span><a href="{{ url_for('register') }}">Register</a></span> or <span><a href="{{ url_for('login') }}">Login</a></span> to subscribe.</p>
+{% endif %}
+{% endblock %}

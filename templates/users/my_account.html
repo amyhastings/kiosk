@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block main %}
+  <h2>My Account</h2>
+  <p class="action-button"><a href="{{ url_for('my_details') }}">My Personal Details</a></p>
+  <p class="action-button"><a href="{{ url_for('my_subscriptions') }}">My Subscriptions</a></p>
+{% endblock %}
