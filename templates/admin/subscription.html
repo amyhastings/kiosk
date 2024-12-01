@@ -6,13 +6,12 @@
         <p>Magazine: {{subscription.magazines.title}}</p>
         <p>Length of Subscription: {{ subscription.sub_length }}</p>
         <p>Start Date: {{ subscription.sub_start_date }}</p>
-        <p>First Issue: {{subscription.first_issue}}</p>
-        <p>Last Issue: {{subscription.last_issue}}</p>
+        <p>First Issue: {{ subscription.get_first_issue_date() }}</p>
         <p>Is the subscription active?
             {% if subscription.active %}
                 Yes
             {% else %}
                 No
-            {% endif %}</td>
+            {% endif %}
         </p>
 {% endblock %}
