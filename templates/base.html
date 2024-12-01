@@ -11,7 +11,7 @@
     <body>
         <header>
             <div class="logo">
-                <a href="/"><img src="/static/images/logo2.png" alt="Kiosk"></a>
+                <a href="/"><img src="/static/images/logo.png" alt="Kiosk"></a>
             </div>
             <nav>
                 <div class="nav-small">
@@ -20,20 +20,36 @@
                     <div class="menu-content inactive">
                         <p class="menu-label">Menu</p>
                         <ul>
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/all_categories">Categories</a></li>
-                            <li><a href="/subscribe">Subscribe</a></li>
-                            <li><a href="/contact">Contact</a></li>
-                            <li><a href="/admin">Admin Console</a></li>
+                            <li><a href="{{ url_for('home') }}">Home</a></li>
+                            <li><a href="{{ url_for('all_categories') }}">Categories</a></li>
+                            <li><a href="{{ url_for('add_subscription') }}">Subscribe</a></li>
+                            {% if current_user.is_authenticated %}
+                                <li><a href="{{ url_for('my_account') }}">My Account</a></li>
+                                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                            {% else %}
+                                <li><a href="{{ url_for('login') }}">Login</a></li>
+                                <li><a href="{{ url_for('register') }}">Register</a></li>
+                            {% endif %}
+                            {% if current_user.is_authenticated and current_user.role_id == EMPLOYEE_ROLE_ID %}
+                                <li><a href="{{ url_for('admin_console') }}">Admin Console</a></li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
                 <div class="nav-large">
-                    <a href="/">Home</a>
-                    <a href="/all_categories">Categories</a>
-                    <a href="/subscribe">Subscribe</a>
-                    <a href="/contact">Contact</a>
-                    <a href="/admin">Admin Console</a>
+                    <a href="{{ url_for('home') }}">Home</a>
+                    <a href="{{ url_for('all_categories') }}">Categories</a>
+                    <a href="{{ url_for('add_subscription') }}">Subscribe</a>
+                    {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('my_account') }}">My Account</a>
+                        <a href="{{ url_for('logout') }}">Logout</a>
+                    {% else %}
+                        <a href="{{ url_for('login') }}">Login</a>
+                        <a href="{{ url_for('register') }}">Register</a>
+                    {% endif %}
+                    {% if current_user.is_authenticated and current_user.role_id == EMPLOYEE_ROLE_ID %}
+                        <a href="{{ url_for('admin_console') }}">Admin Console</a>
+                    {% endif %}
                 </div>
             </nav>
         </header>
