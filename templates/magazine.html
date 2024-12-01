@@ -28,7 +28,7 @@
         </p>
     </div>
     <div>
-        <p class="action-button"><a href="{{ url_for('add_subscription') }}">Subscribe</a></p>
+        <p class="action-button"><a href="{{ url_for('add_subscription', mag_id=magazine.mag_id) }}">Subscribe</a></p>
     </div>
 
 {% endblock %}

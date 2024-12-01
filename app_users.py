@@ -104,9 +104,9 @@ def my_subscriptions():
     else:
         return redirect(url_for("login"))
 
-@app.route('/subscribe', methods=['GET', 'POST'])
-def add_subscription():
-    magazines=Magazine.query.all()
+@app.route('/subscribe/<int:mag_id>', methods=['GET', 'POST'])
+def add_subscription(mag_id):
+    magazine = db.get_or_404(Magazine, mag_id) 
     if request.method == 'POST':
         s = Subscription(
             user_id = current_user.get_id(),
@@ -119,6 +119,6 @@ def add_subscription():
         if current_user.role_id == USER_ROLE_ID:
             current_user.role_id = SUBSCRIBER_ROLE_ID
         db.session.commit()
-        return redirect(url_for('my_subscriptions', sub_id=s.sub_id, magazines=magazines))
+        return redirect(url_for('my_subscriptions', sub_id=s.sub_id, magazine=magazine))
 
-    return render_template('users/subscribe.html', magazines=Magazine.query.all())
+    return render_template('users/subscribe.html', magazine=magazine)

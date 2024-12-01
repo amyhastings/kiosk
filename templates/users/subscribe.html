@@ -2,13 +2,19 @@
 
 {% block main %}
 {% if current_user.is_authenticated %}
-    <form action="{{ url_for('add_subscription') }}" method="POST">
-        <label for="magazine">Choose a Magazine:</label>
-        <select id="magazines" name="mag_id">
-        {% for magazine in magazines %}
-            <option value="{{ magazine.mag_id }}">{{ magazine.title }}</option>
-        {% endfor %}
-        </select>
+    <h2>Subscribe to {{ magazine.title }}</h2>
+
+    <img src="/static/images/mag{{ magazine.mag_id}}.jpg" alt="Cover for " {{ magazine.title }} class="magazine-cover">
+    <p>
+        Frequency: {{ magazine.frequency }}
+    </p>
+    <p>
+        Cost per issue: €{{ "%.2f"|format(magazine.cost_per_issue / 100) }}
+    </p>
+
+    <form id="subscribe-form" action="{{ url_for('add_subscription', mag_id=magazine.mag_id) }}" method="POST">
+        <input type="hidden" name="mag_id" id="magazines" value="{{ magazine.mag_id }}">
+        <input type="hidden" name="mag_cost" id="mag_cost" value="{{ magazine.cost_per_issue }}">
         <label>Choose how many issues you would like to receive:</label>
         <select  id="sub_length" name="sub_length">
             <option value="1">1</option>
@@ -18,6 +24,7 @@
             <option value="12">12</option>
             <option value="18">18</option>
         </select>
+        <p id="overall_cost">The total cost of your subscription will be €{{ "%.2f"|format(magazine.cost_per_issue / 100) }}</p>
         <button type="submit">Subscribe</button>
     </form>
 {% else %}

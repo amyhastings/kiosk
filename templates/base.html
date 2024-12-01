@@ -22,7 +22,6 @@
                         <ul>
                             <li><a href="{{ url_for('home') }}">Home</a></li>
                             <li><a href="{{ url_for('all_categories') }}">Categories</a></li>
-                            <li><a href="{{ url_for('add_subscription') }}">Subscribe</a></li>
                             {% if current_user.is_authenticated %}
                                 <li><a href="{{ url_for('my_account') }}">My Account</a></li>
                                 <li><a href="{{ url_for('logout') }}">Logout</a></li>
@@ -39,7 +38,6 @@
                 <div class="nav-large">
                     <a href="{{ url_for('home') }}">Home</a>
                     <a href="{{ url_for('all_categories') }}">Categories</a>
-                    <a href="{{ url_for('add_subscription') }}">Subscribe</a>
                     {% if current_user.is_authenticated %}
                         <a href="{{ url_for('my_account') }}">My Account</a>
                         <a href="{{ url_for('logout') }}">Logout</a>

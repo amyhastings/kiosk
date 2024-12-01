@@ -37,7 +37,7 @@ def inject_subscriber_role_id():
 
 @app.route('/')
 def home():
-    return render_template('home.html', magazines = Magazine.query.all())
+    return render_template('home.html', magazines=Magazine.query.all())
 
 @app.route('/all_categories')
 def all_categories():
