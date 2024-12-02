@@ -23,7 +23,7 @@
                 <option value="18">18</option>
             </select>
             <p id="overall_cost">The total cost of your subscription will be €{{ "%.2f"|format(magazine.cost_per_issue / 100) }}</p>
-            <button type="submit">Subscribe</button>
+            <button type="submit" class="submit-button">Subscribe</button>
         </form>
     {% else %}
         <p>Please <span><a href="{{ url_for('register') }}">Register</a></span> or <span><a href="{{ url_for('login') }}">Login</a></span> to subscribe.</p>
