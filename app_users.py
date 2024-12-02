@@ -73,7 +73,7 @@ def my_account():
 @app.route('/my_account/my_details')
 def my_details():
     if current_user.is_authenticated:
-        user = User.query.filter_by(user_id=current_user.id)
+        user = db.get_or_404(User, current_user.id) 
         return render_template('users/my_details.html', user=user)
     else:
         return redirect(url_for("login"))
@@ -81,7 +81,7 @@ def my_details():
 @app.route('/my_account/edit_my_details', methods=['GET', 'POST'])
 def edit_my_details():
     if current_user.is_authenticated:
-        user = User.query.filter_by(user_id=current_user.id)
+        user = db.get_or_404(User, current_user.id) 
 
         if request.method == 'POST':
             user.username = request.form['username']
