@@ -305,6 +305,8 @@ nav {
 table {
     margin: 0 auto;
     font-size: small;
+    overflow-x: auto;
+    display: block;
 }
 
 table, td { 
