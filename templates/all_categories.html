@@ -1,18 +1,15 @@
 {% extends "base.html" %}
 
 {% block main %}
-
-    <h2>Magazines</h2>
-
+    <h2>Magazine Categories</h2>
     <div>
         <p>Browse and subscribe to magazines under the following categories:</p>
-        <ul>
+        <ul class="cat-menu">
             {% for category in categories %}
-                <li class="category-button">
-                    <a href={{ url_for('category_mags', cat_id=category.cat_id) }}>{{ category.cat_name }}</a>
-                </li>
+                <a href={{ url_for('category_mags', cat_id=category.cat_id) }}><li class="category-button">
+                    {{ category.cat_name }}
+                </li></a>
             {% endfor %}
         </ul>
     </div>
-
 {% endblock %}

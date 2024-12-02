@@ -22,16 +22,19 @@
             <legend>
                 Categories:
             </legend>
+            <p>Each magazine must be assigned to at least one category.</p>
                 {% for category in categories %}
-                <label for="category-{{ category.cat_id }}">{{ category.cat_name }}</label>
+                <div class="cat-container">
+                    <label for="category-{{ category.cat_id }}">{{ category.cat_name }}</label>
 
-                    {% if category in magazine.categories %}
-                        <input type="checkbox" id="category-{{ category.cat_id }}" name="category-{{ category.cat_id }}" value="{{ category.cat_name }}" checked class="mag-cats">
-                    {% else %}
-                        <input type="checkbox" id="category-{{ category.cat_id }}" name="category-{{ category.cat_id }}" value="{{ category.cat_name }}" class="mag-cats">
-                    {% endif %}
+                        {% if category in magazine.categories %}
+                            <input type="checkbox" id="category-{{ category.cat_id }}" name="category-{{ category.cat_id }}" value="{{ category.cat_name }}" checked class="mag-cats">
+                        {% else %}
+                            <input type="checkbox" id="category-{{ category.cat_id }}" name="category-{{ category.cat_id }}" value="{{ category.cat_name }}" class="mag-cats">
+                        {% endif %}
 
-                {% endfor %}
+                    {% endfor %}
+                </div>
         </fieldset>
         <button type="submit" class="mag-form-button">Save Changes</button>
     </form>

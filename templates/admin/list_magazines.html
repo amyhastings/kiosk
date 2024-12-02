@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
+
 {% block main %}
     <h2>List of Magazines</h2>
+    <a href="{{ url_for('add_magazine') }}"><p class="admin-add-button">Add a New Magazine</p></a>
+    <br>
     <table>
         <thead>
         <tr>
@@ -31,12 +34,12 @@
                             {% endif %}
                         </td>
                         <td>{{magazine.frequency}}</td>
-                        <td>{{magazine.description}}</td>
+                        <td>{{magazine.description[:50]}}...</td>
                         <td>€{{ "%.2f"|format(magazine.cost_per_issue / 100)}}</td>
                         <td>{{magazine.cover_image}}</td>
                         <td>{{magazine.employee_id}}</td>
                         <td>
-                            <p class="action-button"><a href="{{ url_for('edit_magazine', mag_id=magazine.mag_id) }}">Edit</a></p>
+                            <a href="{{ url_for('edit_magazine', mag_id=magazine.mag_id) }}"><p class="admin-action-button">Edit</p></a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -47,5 +50,4 @@
             {% endif %}
         </tbody>
     </table>
-    <p><a href="{{ url_for('add_magazine') }}">Add a New Magazine</a></p>
 {% endblock %}

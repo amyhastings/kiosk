@@ -6,6 +6,8 @@
     padding-inline-end: 0;
 }
 
+/* General styling for all pages */
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -17,10 +19,6 @@ header {
     display: flex;
     justify-content: space-between;
 }
-
-.inactive {
-    display: none;
-} 
 
 .logo a img {
     height: 100px;
@@ -39,6 +37,18 @@ nav {
     top: 0;
 }
 
+.flashes {
+    width: 50%;
+    height: 3em;
+    padding: 1em;
+    margin: 0 auto;
+    background-color: rgba(14,14,157,0.5);
+    list-style-type: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 /* Styling for the larger nav bar for larger screens */
 
 .nav-large {
@@ -54,11 +64,6 @@ nav {
     text-decoration: none;
     color: #000000;
     text-align: center; 
-}
-
-.nav-large a:hover {
-    color: var(--pink);
-    transition: 0.5s;
 }
 
 /* Styling for the hamburger menu for smaller screens */
@@ -107,34 +112,295 @@ nav {
     color: #000000;
 }
 
-/* Styling for magazine galleries */
-/* .magazine-container img {
-    width: 300px;
-} */
+/* Home page styling */
 
-.action-button {
-    background-color: #f9703c;
-    color: #FFFFFF;
-    padding: 0.5em 1em;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    display: flex;
-    margin: 10px auto;
+.welcome-container {
+    font-size: 1.75em;
+    text-align: center;
+    padding: 0 0 40px 0;
 }
 
-.category-button {
-    background-color: #f9703c;
-    color: #FFFFFF;
-    padding: 0.5em 1em;
+.magazines-gallery img {
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.magazines-gallery p {
+    text-align: center;
+    align-items: center;
+}
+
+.magazines-gallery a {
+    font-weight: bold;
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Individual magazine page styling */
+
+.mag-desc {
+    text-align:justify;
+    margin: 0 0 50px 0;
+}
+
+.details-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(249px, 1fr));
+    grid-gap: 25px;
+    margin: 20px auto;
+    text-align: justify;
+    align-items: center;
+}
+
+.details-container h4 {
+    text-decoration: underline;
+}
+
+.details-container ul {
+    margin: 20px;
+}
+
+.details-heading {
+    font-weight: bold;
+}
+
+.action-button {
+    background-color: rgba(14,14,157,0.5);
+    width: 225px;
+    height: 4em;
+    font-size: 1.25em;
+    font-weight: bold;
     border: none;
     border-radius: 5px;
+    text-decoration: none;
     cursor: pointer;
     display: flex;
     margin: 10px auto;
     list-style-type: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
+.action-button a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+/* All categories page styling */
+
+.cat-menu ul {
+    margin: 25px;
+}
+
+.category-button {
+    background-color: rgba(14,14,157,0.5);
+    width: 225px;
+    height: 4em;
+    font-size: 1.25em;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    display: flex;
+    margin: 10px auto;
+    list-style-type: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.category-button li, a {
+    text-decoration: none;
+    color: #000000;
+}
+
+/* Login / Logout / Register pages styling */
+
+.login-container {
+    text-align: center;
+    padding: 0 0 40px 0;
+}
+
+.login-container input {
+    width: 50%;
+    margin: 10px 0 20px 0;
+    padding: 20px;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.logout-container {
+    font-size: 1.75em;
+    text-align: center;
+    padding: 0 0 40px 0;
+}
+
+.login-button, .register-button {
+    background-color: rgba(14,14,157,0.4);
+    width: 180px;
+    display: block;
+    margin: 30px auto;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.25em;
+    color: #000000;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Admin Console pages styling */
+
+.admin-con-button, .admin-add-button {
+    background-color: rgba(14,14,157,0.4);
+    width: 250px;
+    height: 4em;
+    font-size: 1.25em;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    display: flex;
+    margin: 10px auto;
+    list-style-type: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.admin-con-button a, .admin-add-button a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.admin-action-button {
+    background-color: rgba(14,14,157,0.4);
+    padding: 0.2em;
+    font-size: small;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    display: flex;
+    margin: 10px auto;
+    list-style-type: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.admin-action-button a {
+    text-decoration: none;
+    color: #000000;
+}
+
+/* List pages styling */
+table {
+    margin: 0 auto;
+    font-size: small;
+}
+
+table, td { 
+    border: 1.5px solid #999999;
+    border-collapse: collapse;
+}
+
+tr:nth-of-type(even) { background-color: rgba(14, 14, 157, 0.1); }
+
+th {
+    background-color: rgba(14, 14, 157, 0.4);
+    color: #000000;
+    padding: 20px;
+    border: 1.5px solid #000000;
+    border-collapse: collapse;
+}
+
+td, thead {
+    padding: 10px;
+}
+
+/* My Account page styling */
+.my-acc-button {
+    background-color: rgba(14,14,157,0.4);
+    width: 250px;
+    height: 4em;
+    font-size: 1.25em;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    display: flex;
+    margin: 10px auto;
+    list-style-type: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.my-acc-button a {
+    text-decoration: none;
+    color: #000000;
+}
+
+/* Forms styling */
+
+input {
+    width: 100%;
+    margin: 10px 0 20px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.submit-button, .edit-button, .mag-form-button {
+    background-color: rgba(14,14,157,0.4);
+    width: 180px;
+    display: block;
+    margin: 30px auto;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.25em;
+    color: #000000;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.edit-button a {
+    text-decoration: none;
+    color: #000000;
+}
+
+fieldset {
+    border: 1px solid #888888;
+    padding: 30px;
+    }
+
+fieldset legend {
+    padding: 6px;
+    font-weight: bold;
+    }
+
+input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 20px;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 0 20px;
+}
 
 /* Styling for the footer */
 
@@ -145,7 +411,6 @@ nav {
 
 footer {
     font-size: small;
-    color: var(--grey);
     line-height: 1.5;
     width: 100%;
     padding: 40px;
@@ -202,9 +467,37 @@ footer {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-gap: 50px;
-        /* padding: 25px;
-        margin: 10px; */
         text-align: justify;
         align-items: center;
     }
+
+    .details-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 50px;
+        text-align: justify;
+    }
+
+    .cat-menu {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 25px;
+        text-align: justify;
+        align-items: center;
+    }
+
+    .admin-console {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 50px;
+        text-align: justify;
+    }
+
+    .my-acc {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 50px;
+        text-align: justify;
+    }
 }
+

@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block main %}
-
     <h2>Are you sure you want to delete Category ID {{ category.cat_id }} {{ category.cat_name }} from the database?</h2>
     <h2>Deleting a category from the database is a permanent action that cannot be reversed.</h2>
     <div>
@@ -20,7 +19,7 @@
             </tbody>
         </table>
         <form action="{{ url_for('delete_category', cat_id=category.cat_id) }}" method="POST">
-            <button type="submit">DELETE CATEGORY PERMANENTLY</button>
+            <button type="submit" class="submit-button">DELETE CATEGORY PERMANENTLY</button>
         </form>
     </div>
 {% endblock %}

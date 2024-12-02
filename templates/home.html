@@ -1,21 +1,20 @@
 {% extends "base.html" %}
 
 {% block main %}
-<div class="welcome-container">
-    <p>Welcome to Kiosk!</p>
-    <p>Discover and subscribe to your favorite magazines, all in one place!</p>
-</div>
-<div class="magazines-gallery">
-    {% if magazines|length > 0 %}
-        {% for magazine in magazines %}
-            <a href="/magazine/{{ magazine.mag_id }}" class="magazine-container">
-                <img src="/static/images/mag{{ magazine.mag_id }}.jpg" alt="Cover for " {{ magazine.title }} class="magazine-cover">
-                <p>{{ magazine.title }}</p>
-            </a>
-        {% endfor %}
-    {% else %}
-        <p>No magazines are currently available. Check back later to see any new additions.</p>
-    {% endif %}
-</div>
-
+    <div class="welcome-container">
+        <p>Welcome to Kiosk!</p>
+        <p>Discover and subscribe to your favorite magazines, all in one place!</p>
+    </div>
+    <div class="magazines-gallery">
+        {% if magazines|length > 0 %}
+            {% for magazine in magazines %}
+                <a href="/magazine/{{ magazine.mag_id }}" class="magazine-container">
+                    <img src="/static/images/mag{{ magazine.mag_id }}.jpg" alt="Cover for " {{ magazine.title }} class="magazine-cover">
+                    <p>{{ magazine.title }}</p>
+                </a>
+            {% endfor %}
+        {% else %}
+            <p>No magazines are currently available. Check back later to see any new additions.</p>
+        {% endif %}
+    </div>
 {% endblock %}

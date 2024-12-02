@@ -1,38 +1,38 @@
 {% extends 'base.html' %}
+
 {% block main %}
-  <h2>Add a new magazine</h2>
-  <form action="{{ url_for('add_magazine') }}" method="POST" id="mag-form-add">
-    <fieldset>
-      <legend>
-        Magazine Details:
-      </legend>
-      <label>Title:</label>
-      <input type="text" name="title" size="30" required>
-      <label>Frequency:</label>
-      <input type="text" name="frequency" required>
-      <label>Description:</label>
-      <input type="text" name="description" required>
-      <label>Cost per Issue (in cents):</label>
-      <input type="number" name="cost_per_issue" required>
-      <label>Cover image url:</label>
-      <input type="text" name="cover_image">
-    </fieldset>
-    <fieldset>
-      <legend>
-        Categories:
-      </legend>
-      <ul>
-        {% for category in categories %}
-        <li>
-          <label for="category-{{ category.cat_id }}">{{ category.cat_name }}</label>
-          <input type="checkbox" id="category-{{ category.cat_id }}" name="category-{{ category.cat_id }}" value="{{ category.cat_name }}" class="mag-cats">
-        </li>
-        {% endfor %}
-      </ul>
-    </fieldset>
-    <button type="submit" class="mag-form-button" disabled>Add New Magazine</button>
-  </form>
-  <div id="cats-error-msg"></div>
-  <script src="/static/js/magazine_cats.js"></script>
+    <h2>Add a new magazine</h2>
+    <form action="{{ url_for('add_magazine') }}" method="POST" id="mag-form-add">
+      <fieldset>
+        <legend>
+          Magazine Details:
+        </legend>
+        <label>Title:</label>
+        <input type="text" name="title" size="30" required>
+        <label>Frequency:</label>
+        <input type="text" name="frequency" required>
+        <label>Description:</label>
+        <input type="text" name="description" required>
+        <label>Cost per Issue (in cents):</label>
+        <input type="number" name="cost_per_issue" required>
+        <label>Cover image url:</label>
+        <input type="text" name="cover_image">
+      </fieldset>
+      <fieldset>
+        <legend>
+          Categories:
+        </legend>
+        <p>Each magazine must be assigned to at least one category.</p>
+          {% for category in categories %}
+            <div class="cat-container">
+              <label for="category-{{ category.cat_id }}">{{ category.cat_name }}</label>
+              <input type="checkbox" id="category-{{ category.cat_id }}" name="category-{{ category.cat_id }}" value="{{ category.cat_name }}" class="mag-cats">
+            </div>
+          {% endfor %}
+      </fieldset>
+      <button type="submit" class="mag-form-button" disabled>Add New Magazine</button>
+    </form>
+    <div id="cats-error-msg"></div>
+    <script src="/static/js/magazine_cats.js"></script>
 {% endblock %}
 

@@ -1,34 +1,41 @@
 {% extends "base.html" %}
 
 {% block main %}
-
     <h2>{{ magazine.title }}</h2>
-
-    <img src="/static/images/mag{{ magazine.mag_id}}.jpg" alt="Cover for " {{ magazine.title }} class="magazine-cover">
-    <div>
-        <h4>Key Details</h4>
-        <p>
-            Categories:
+    <div class="details-container">
+        <div>
+            <img src="/static/images/mag{{ magazine.mag_id}}.jpg" alt="Cover for " {{ magazine.title }} class="magazine-cover">
+        </div>
+        <div>
+            <h4>Key Details</h4>
+            <p class="details-heading">
+                Categories:
+            </p>
+            <ul>
                 {% if magazine.categories|length > 0 %}
                     {% for category in magazine.categories %}
+                    <li>
                         {{ category.cat_name }}
+                    </li>
                     {% endfor %}
                 {% else %}
                     No categories assigned.
                 {% endif %}
-        </p>
-        <p>
-            Frequency: {{ magazine.frequency }}
-        </p>
-        <p>
-            Cost per issue: €{{ "%.2f"|format(magazine.cost_per_issue / 100) }}
-        </p>
+            </ul>
+            <p>
+                <span class="details-heading">Frequency:</span> {{ magazine.frequency }}
+            </p>
+            <p>
+                <span class="details-heading">Cost per issue:</span> €{{ "%.2f"|format(magazine.cost_per_issue / 100) }}
+            </p>
+        </div>
+    </div>
+    <div class="mag-desc">
         <p>
             {{ magazine.description }}
         </p>
     </div>
     <div>
-        <p class="action-button"><a href="{{ url_for('add_subscription', mag_id=magazine.mag_id) }}">Subscribe</a></p>
+        <a href="{{ url_for('add_subscription', mag_id=magazine.mag_id) }}"><p class="action-button">Subscribe</p></a>
     </div>
-
 {% endblock %}

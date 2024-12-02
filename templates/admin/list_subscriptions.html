@@ -1,45 +1,46 @@
 {% extends 'base.html' %}
+
 {% block main %}
-  <h2>List of Subscriptions</h2>
-  <table>
-    <thead>
-      <tr>
-        <th scope="col">Subscription ID</th>
-        <th scope="col">Subscriber Name (User ID)</th>
-        <th scope="col">Magazine</th>
-        <th scope="col">Length of Subscription</th>
-        <th scope="col">Subscription Start Date</th>
-        <th scope="col">First Issue</th>
-        <th scope="col">Active</th>
-        <th scope="col">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% if subscriptions|length > 0 %}
-            {% for subscription in subscriptions %}
-                <tr>
-                    <td>{{subscription.sub_id}}</td>
-                    <td>{{subscription.users.name}} ({{ subscription.user_id}})</td>
-                    <td>{{subscription.magazines.title}}</td>
-                    <td>{{subscription.sub_length}} Issues</td>
-                    <td>{{subscription.sub_start_date}}</td>
-                    <td>{{subscription.get_first_issue_date()}}</td>
-                    <td>
-                        {% if subscription.active %}
-                            Yes
-                        {% else %}
-                            No
-                        {% endif %}</td>
-                    <td>
-                        <p class="action-button"><a href="{{ url_for('edit_subscription', sub_id=subscription.sub_id) }}">Edit</a></p>
-                    </td>
-                </tr>
-            {% endfor %}
-        {% else %}
-            <tr>
-               <td colspan="8">No subscriptions found</td>
-            </tr>
-        {% endif %}
-    </tbody>
-  </table>
+    <h2>List of Subscriptions</h2>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Subscription ID</th>
+          <th scope="col">Subscriber Name (User ID)</th>
+          <th scope="col">Magazine</th>
+          <th scope="col">Length of Subscription</th>
+          <th scope="col">Subscription Start Date</th>
+          <th scope="col">First Issue</th>
+          <th scope="col">Active</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if subscriptions|length > 0 %}
+              {% for subscription in subscriptions %}
+                  <tr>
+                      <td>{{subscription.sub_id}}</td>
+                      <td>{{subscription.users.name}} ({{ subscription.user_id}})</td>
+                      <td>{{subscription.magazines.title}}</td>
+                      <td>{{subscription.sub_length}} Issues</td>
+                      <td>{{subscription.sub_start_date}}</td>
+                      <td>{{subscription.get_first_issue_date()}}</td>
+                      <td>
+                          {% if subscription.active %}
+                              Yes
+                          {% else %}
+                              No
+                          {% endif %}</td>
+                      <td>
+                          <a href="{{ url_for('edit_subscription', sub_id=subscription.sub_id) }}"><p class="admin-action-button">Edit</p></a>
+                      </td>
+                  </tr>
+              {% endfor %}
+          {% else %}
+              <tr>
+                <td colspan="8">No subscriptions found</td>
+              </tr>
+          {% endif %}
+      </tbody>
+    </table>
 {% endblock %}

@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
+
 {% block main %}
-  <h2>My Account</h2>
-  <p class="action-button"><a href="{{ url_for('my_details') }}">My Personal Details</a></p>
-  <p class="action-button"><a href="{{ url_for('my_subscriptions') }}">My Subscriptions</a></p>
+    <h2>My Account</h2>
+    <div class="my-acc">
+        <a href="{{ url_for('my_details') }}"><p class="my-acc-button">My Personal Details</p></a>
+        <a href="{{ url_for('my_subscriptions') }}"><p class="my-acc-button">My Subscriptions</p></a>
+    </div>
 {% endblock %}

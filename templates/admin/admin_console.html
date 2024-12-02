@@ -1,12 +1,11 @@
 {% extends "base.html" %}
 
 {% block main %}
-<h2>Administration Console</h2>
-<div>
-    <p class="action-button"><a href="{{ url_for('list_magazines') }}">Manage Magazines</a></p>
-    <p class="action-button"><a href="{{ url_for('list_users') }}">Manage Users</a></p>
-    <p class="action-button"><a href="{{ url_for('list_categories') }}">Manage Categories</a></p>
-    <p class="action-button"><a href="{{ url_for('list_subscriptions') }}">Manage Subscriptions</a></p>
-</div>
-
+    <h2>Administration Console</h2>
+    <div class="admin-console">
+        <a href="{{ url_for('list_magazines') }}"><p class="admin-con-button">Manage Magazines</p></a>
+        <a href="{{ url_for('list_users') }}"><p class="admin-con-button">Manage Users</p></a>
+        <a href="{{ url_for('list_categories') }}"><p class="admin-con-button">Manage Categories</p></a>
+        <a href="{{ url_for('list_subscriptions') }}"><p class="admin-con-button">Manage Subscriptions</p></a>
+    </div>
 {% endblock %}
