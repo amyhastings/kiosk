@@ -2,38 +2,40 @@
 
 {% block main %}
     <h2>My Subscriptions</h2>
-    <table>
-        <thead>
-            <tr>
-                <th scope="col">Magazine</th>
-                <th scope="col">Length of Subscription</th>
-                <th scope="col">Subscription Start Date</th>
-                <th scope="col">First Issue Date</th>
-                <th scope="col">Subscription still active?</th>
-            </tr>
-        </thead>
-      <tbody>
-          {% if subscriptions.count() > 0 %}
-              {% for subscription in subscriptions %}
-                  <tr>
-                      <td>{{subscription.magazines.title}}</td>
-                      <td>{{subscription.sub_length}} Issues</td>
-                      <td>{{subscription.sub_start_date}}</td>
-                      <td>{{subscription.get_first_issue_date()}}</td>
-                      <td>
-                          {% if subscription.active %}
-                              Yes
-                          {% else %}
-                              No
-                          {% endif %}</td>
-                  </tr>
-              {% endfor %}
-            {% else %}
-                  <tr>
-                    <td colspan="5">No subscriptions here. Navigate to the <a href="{{ url_for('home') }}">home page</a> to view available magazines
-                    or <a href="{{ url_for('all_categories') }}">browse titles by category to find a subscription you would love!</a> </td>
-                  </tr>
-            {% endif %}
-      </tbody>
-    </table>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">Magazine</th>
+                    <th scope="col">Length of Subscription</th>
+                    <th scope="col">Subscription Start Date</th>
+                    <th scope="col">First Issue Date</th>
+                    <th scope="col">Subscription still active?</th>
+                </tr>
+            </thead>
+          <tbody>
+              {% if subscriptions.count() > 0 %}
+                  {% for subscription in subscriptions %}
+                      <tr>
+                          <td>{{subscription.magazines.title}}</td>
+                          <td>{{subscription.sub_length}} Issues</td>
+                          <td>{{subscription.sub_start_date}}</td>
+                          <td>{{subscription.get_first_issue_date()}}</td>
+                          <td>
+                              {% if subscription.active %}
+                                  Yes
+                              {% else %}
+                                  No
+                              {% endif %}</td>
+                      </tr>
+                  {% endfor %}
+                {% else %}
+                      <tr>
+                        <td colspan="5">No subscriptions here. Navigate to the <a href="{{ url_for('home') }}">home page</a> to view available magazines
+                        or <a href="{{ url_for('all_categories') }}">browse titles by category to find a subscription you would love!</a> </td>
+                      </tr>
+                {% endif %}
+          </tbody>
+        </table>
+    </div>
 {% endblock %}

@@ -306,11 +306,16 @@ nav {
 }
 
 /* List pages styling */
+.table-container {
+    white-space: nowrap;
+    overflow-x: auto;
+    display: block;
+}
+
 table {
     margin: 0 auto;
     font-size: small;
-    overflow-x: auto;
-    display: block;
+    width: 100%
 }
 
 table, td { 

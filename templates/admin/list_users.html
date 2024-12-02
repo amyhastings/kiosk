@@ -2,46 +2,48 @@
 
 {% block main %}
     <h2>List of Users</h2>
-    <table>
-      <thead>
-        <tr>
-          <th scope="col">User ID</th>
-          <th scope="col">Role</th>
-          <th scope="col">Username</th>
-          <th scope="col">Name</th>
-          <th scope="col">Email</th>
-          <th scope="col">Address</th>
-          <th scope="col">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% if users|length > 0 %}
-              {% for user in users %}
+    <div class="table-container"></div>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">User ID</th>
+              <th scope="col">Role</th>
+              <th scope="col">Username</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Address</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if users|length > 0 %}
+                  {% for user in users %}
+                      <tr>
+                          <td>{{user.id}}</td>
+                          <td>
+                              {% if user.role_id == EMPLOYEE_ROLE_ID %}
+                                  Employee
+                              {% elif user.role_id == SUBSCRIBER_ROLE_ID %}
+                                  Subscriber
+                              {% else %}
+                                  User
+                              {% endif %}
+                          </td>
+                          <td>{{user.username}}</td>
+                          <td>{{user.name}}</td>
+                          <td>{{user.email}}</td>
+                          <td>{{user.address}}</td>
+                          <td>
+                              <a href="{{ url_for('edit_user', id=user.id) }}"><p class="admin-action-button">Edit</p></a>
+                          </td>
+                      </tr>
+                  {% endfor %}
+              {% else %}
                   <tr>
-                      <td>{{user.id}}</td>
-                      <td>
-                          {% if user.role_id == EMPLOYEE_ROLE_ID %}
-                              Employee
-                          {% elif user.role_id == SUBSCRIBER_ROLE_ID %}
-                              Subscriber
-                          {% else %}
-                              User
-                          {% endif %}
-                      </td>
-                      <td>{{user.username}}</td>
-                      <td>{{user.name}}</td>
-                      <td>{{user.email}}</td>
-                      <td>{{user.address}}</td>
-                      <td>
-                          <a href="{{ url_for('edit_user', id=user.id) }}"><p class="admin-action-button">Edit</p></a>
-                      </td>
+                    <td colspan="7">No users found</td>
                   </tr>
-              {% endfor %}
-          {% else %}
-              <tr>
-                <td colspan="7">No users found</td>
-              </tr>
-          {% endif %}
-      </tbody>
-    </table>
+              {% endif %}
+          </tbody>
+        </table>
+    </div>
 {% endblock %}

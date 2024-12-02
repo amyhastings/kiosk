@@ -4,50 +4,52 @@
     <h2>List of Magazines</h2>
     <a href="{{ url_for('add_magazine') }}"><p class="admin-add-button">Add a New Magazine</p></a>
     <br>
-    <table>
-        <thead>
-        <tr>
-            <th scope="col">Magazine ID</th>
-            <th scope="col">Title</th>
-            <th scope="col">Category</th>
-            <th scope="col">Frequency</th>
-            <th scope="col">Description</th>
-            <th scope="col">Cost per Issue</th>
-            <th scope="col">Cover Image (url)</th>
-            <th scope="col">Added by (User ID for employee)</th>
-            <th scope="col">Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% if magazines|length > 0 %}
-                {% for magazine in magazines %}
+    <div class="table-container">
+        <table>
+            <thead>
+            <tr>
+                <th scope="col">Magazine ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Category</th>
+                <th scope="col">Frequency</th>
+                <th scope="col">Description</th>
+                <th scope="col">Cost per Issue</th>
+                <th scope="col">Cover Image (url)</th>
+                <th scope="col">Added by (User ID for employee)</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if magazines|length > 0 %}
+                    {% for magazine in magazines %}
+                        <tr>
+                            <td>{{magazine.mag_id}}</td>
+                            <td>{{magazine.title}}</td>
+                            <td>
+                                {% if magazine.categories|length > 0 %}
+                                    {% for category in magazine.categories %}
+                                        {{ category.cat_name }}
+                                    {% endfor %}
+                                {% else %}
+                                    No categories assigned.
+                                {% endif %}
+                            </td>
+                            <td>{{magazine.frequency}}</td>
+                            <td>{{magazine.description[:50]}}...</td>
+                            <td>€{{ "%.2f"|format(magazine.cost_per_issue / 100)}}</td>
+                            <td>{{magazine.cover_image}}</td>
+                            <td>{{magazine.employee_id}}</td>
+                            <td>
+                                <a href="{{ url_for('edit_magazine', mag_id=magazine.mag_id) }}"><p class="admin-action-button">Edit</p></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
                     <tr>
-                        <td>{{magazine.mag_id}}</td>
-                        <td>{{magazine.title}}</td>
-                        <td>
-                            {% if magazine.categories|length > 0 %}
-                                {% for category in magazine.categories %}
-                                    {{ category.cat_name }}
-                                {% endfor %}
-                            {% else %}
-                                No categories assigned.
-                            {% endif %}
-                        </td>
-                        <td>{{magazine.frequency}}</td>
-                        <td>{{magazine.description[:50]}}...</td>
-                        <td>€{{ "%.2f"|format(magazine.cost_per_issue / 100)}}</td>
-                        <td>{{magazine.cover_image}}</td>
-                        <td>{{magazine.employee_id}}</td>
-                        <td>
-                            <a href="{{ url_for('edit_magazine', mag_id=magazine.mag_id) }}"><p class="admin-action-button">Edit</p></a>
-                        </td>
+                    <td colspan="9">No magazines found</td>
                     </tr>
-                {% endfor %}
-            {% else %}
-                <tr>
-                <td colspan="9">No magazines found</td>
-                </tr>
-            {% endif %}
-        </tbody>
-    </table>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
