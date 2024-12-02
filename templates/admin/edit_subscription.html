@@ -9,13 +9,13 @@
         <input type="number" name="sub_length" value="{{ subscription.sub_length }}" required>
         <label>Start Date:</label>
         <input type="date" name="sub_start_date" value="{{ subscription.sub_start_date }}" required>
-        <p>First Issue: {{subscription.first_issue}}</p>
+        <p>First Issue: {{subscription.get_first_issue_date()}}</p>
         <label>The subscription is active</label>
             {% if subscription.active %}
                 <input type="checkbox" name="active" value="{{ subscription.active }}" checked>
             {% else %}
                 <input type="checkbox" name="active" value="{{ subscription.active }}">
             {% endif %}
-        <button type="submit">Edit Subscription</button>
+        <button type="submit">Save Changes</button>
     </form>
 {% endblock %}

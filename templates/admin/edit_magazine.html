@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block main %}
     <h2>Edit Magazine</h2>
-    <form action="{{ url_for('edit_magazine', mag_id=magazine.mag_id) }}" method="POST">
+    <form action="{{ url_for('edit_magazine', mag_id=magazine.mag_id) }}" method="POST" id="mag-form-add">
         <fieldset>
             <legend>
                 Magazine Details:
@@ -26,13 +26,14 @@
                 <label for="category-{{ category.cat_id }}">{{ category.cat_name }}</label>
 
                     {% if category in magazine.categories %}
-                        <input type="checkbox" id="category-{{ category.cat_id }}" name="category-{{ category.cat_id }}" value="{{ category.cat_name }}" checked>
+                        <input type="checkbox" id="category-{{ category.cat_id }}" name="category-{{ category.cat_id }}" value="{{ category.cat_name }}" checked class="mag-cats">
                     {% else %}
-                        <input type="checkbox" id="category-{{ category.cat_id }}" name="category-{{ category.cat_id }}" value="{{ category.cat_name }}">
+                        <input type="checkbox" id="category-{{ category.cat_id }}" name="category-{{ category.cat_id }}" value="{{ category.cat_name }}" class="mag-cats">
                     {% endif %}
 
                 {% endfor %}
         </fieldset>
-        <button type="submit">Edit Magazine</button>
+        <button type="submit" class="mag-form-button">Save Changes</button>
     </form>
+    <script src="/static/js/magazine_cats.js"></script>
 {% endblock %}

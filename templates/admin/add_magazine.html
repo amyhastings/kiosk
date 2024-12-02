@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block main %}
   <h2>Add a new magazine</h2>
-  <form action="{{ url_for('add_magazine') }}" method="POST">
+  <form action="{{ url_for('add_magazine') }}" method="POST" id="mag-form-add">
     <fieldset>
       <legend>
         Magazine Details:
@@ -25,12 +25,14 @@
         {% for category in categories %}
         <li>
           <label for="category-{{ category.cat_id }}">{{ category.cat_name }}</label>
-          <input type="checkbox" id="category-{{ category.cat_id }}" name="category-{{ category.cat_id }}" value="{{ category.cat_name }}">
+          <input type="checkbox" id="category-{{ category.cat_id }}" name="category-{{ category.cat_id }}" value="{{ category.cat_name }}" class="mag-cats">
         </li>
         {% endfor %}
       </ul>
     </fieldset>
-    <button type="submit">Add New Magazine</button>
+    <button type="submit" class="mag-form-button" disabled>Add New Magazine</button>
   </form>
+  <div id="cats-error-msg"></div>
+  <script src="/static/js/magazine_cats.js"></script>
 {% endblock %}
 
