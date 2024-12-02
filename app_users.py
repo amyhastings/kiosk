@@ -18,10 +18,10 @@ def register():
         address = request.form["address"]
         if User.query.filter_by(username=username).first():
             flash(f"The username '{username}' is already taken")
-            return redirect(url_for("register_page"))
+            return redirect(url_for("register"))
         if User.query.filter_by(email=email).first():
             flash(f"The email '{email}' is already taken")
-            return redirect(url_for("register_page"))
+            return redirect(url_for("register"))
 
         user = User(username=username, name=name, email=email, password=password, address=address)
 
