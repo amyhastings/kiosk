@@ -53,8 +53,17 @@
         </header>
         <div class="container">
             <main>
-            {% block main %}
-            {% endblock %}
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <ul class="flashes">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                    {% endif %}
+                {% endwith %}
+                {% block main %}
+                {% endblock %}
             </main>
         </div>
         <script src="/static/js/script.js"></script>
